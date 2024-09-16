@@ -6,7 +6,7 @@ const xlsx = require('xlsx'); // Require the xlsx library
 require('dotenv').config(); // Load environment variables from .env file
 
 const app = express();
-const port = 7861;
+const port =  process.env.PORT ||7861;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
