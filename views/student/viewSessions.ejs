@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Sessions</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/getIP.js"></script>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    h1,
+    h2 {
+        text-align: center;
+        color: #333;
+    }
+
+    form {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    input[type="time"],
+    input[type="number"],
+    input[type="text"] {
+        width: calc(100% - 22px);
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+
+    button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .session-cards {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .session-card {
+        width: 80%;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin: 10px 0;
+        padding: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .session-card-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .faculty-name {
+        font-weight: bold;
+        color: #007BFF;
+    }
+
+    .session-time {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .session-otp {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .session-limit,
+    .attendance-count {
+        color: #555;
+    }
+</style>
+
+<body>
+    <h1>View Sessions</h1>
+    <h2>Available Sessions</h2>
+    <div class="session-cards">
+        <% sessions.forEach(session=> { %>
+            <div class="session-card">
+                <div class="session-card-header">
+                    <div class="faculty-name">
+                        <%= session.facultyName %>
+                    </div>
+                    <div class="session-time">
+                        <%= session.time %>
+                    </div>
+                </div>
+                <div class="session-limit">Limit: <%= session.limit %>
+                </div>
+                <div class="attendance-count">Attendance Count: <%= session.attendanceCount %>
+                </div>
+                <form action="/markAttendance" method="POST">
+                    <input type="hidden" name="facultyName" value="<%= session.facultyName %>">
+                    <input type="hidden" name="time" value="<%= session.time %>">
+                    <label for="otp">Enter OTP:</label>
+                    <input type="number" name="otp" required>
+                    <input type="hidden" id="ip" name="ip">
+                    
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <% }) %>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+2 button for techer and stud
+
+techer Side:
+0. database techer id 
+1. techer login
+2. put a limt and random pin
+
+
+student side:
+1.data base student Id
+2. login with enrolls
+3. lecture pin interface enter pin check the box i am presant submit button
+
+
+after sir get notfify all student fill 
+student get notfify your attendence full fill
+
+make a spreadsheet of daily attendence
+
